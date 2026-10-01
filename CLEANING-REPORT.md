@@ -7,6 +7,8 @@
 
 **Amendment (2026-10-01, user instruction):** the `" (Clean)"` name suffix added to both manifests during the build was reverted. Both `manifest.json` files are now byte-identical to the originals in `name` and `version` (`CREATOR TOOLS` / `35.0`, `CREATOR TOOLS PRO` / `1.1`); nothing else in the manifests was touched. References below to the `" (Clean)"` suffix describe the build-time state, not the final state.
 
+**Amendment 2 (2026-10-01, user instruction):** restored the vendor portal's extension-detection signal as isolated `presence.js` content scripts (`base/presence.js`, `pro/presence.js`), registered in each manifest with the original match patterns (`*://*/*` / `<all_urls>`, `document_idle`). Each file does exactly one thing — `window.postMessage({type:'EXTENSION_CHECK', extensionName:'CREATOR TOOLS'|'CREATOR TOOLS PRO'}, '*')` on load + every 1500ms, mirroring the original beacons byte-for-byte in shape and timing. No data is collected, read, or sent anywhere else. The stubbed `shh.js` / `content.js` files remain stubs; none of their removed behavior was restored.
+
 **Headline:** the base extension kept its legitimate product features (cookie-injection service, project history, side panel, copy formats, floating launcher, panel auth); the pro extension had **zero** legitimate features in its audited UI files — its background worker was rewritten clean around its only two legitimate behaviors.
 
 ---

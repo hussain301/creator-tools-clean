@@ -41,6 +41,11 @@
       "run_at": "document_idle"
     },
     {
+      "matches": ["<all_urls>"],
+      "js": ["presence.js"],
+      "run_at": "document_idle"
+    },
+    {
       "matches": ["*://flow.google.com/*"],
       "js": ["core_module.js"],
       "run_at": "document_start"

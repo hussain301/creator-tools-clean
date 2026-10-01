@@ -64,6 +64,15 @@
     },
     {
       "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "presence.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
         "*://flow.google.com/*",
         "*://labs.google/*"
       ],
