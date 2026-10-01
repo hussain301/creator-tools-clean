@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flow 3D Water Glass Panel</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <!-- Ambient 3D Glass Light Orbs in Background -->
+  <div class="water-glass-backdrop">
+    <div class="glass-orb orb-red"></div>
+    <div class="glass-orb orb-white"></div>
+  </div>
+
+  <div class="panel-wrapper">
+    <!-- 3D Water Glass Header -->
+    <header class="glass-card header-glass">
+      <div class="water-sheen"></div>
+      <div class="header-main">
+        <div class="logo-group">
+          <div class="water-droplet-badge">
+            <span class="bolt-icon">⚡</span>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title"><span class="text-white">Creator Tools</span></h1>
+            <p class="brand-tagline">We Provide Quality and Trust</p>
+          </div>
+        </div>
+        <a id="btn-whatsapp-header" class="btn-whatsapp-green" href="https://chat.whatsapp.com/LgfJNFkXieTJXTVCdYtvJx" target="_blank" title="Join WhatsApp Community">
+          <span class="wa-icon">💬</span>
+          <span>WhatsApp Community</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Current Tab 3D Water Glass Cockpit (Hidden) -->
+    <section class="glass-card cockpit-card" style="display: none;">
+      <div class="water-sheen"></div>
+      <div class="card-header-bar">
+        <div class="project-tag-wrap">
+          <span class="water-dot-red"></span>
+          <span class="card-tag">ACTIVE TAB</span>
+        </div>
+        <span class="glass-badge-project" id="project-number-badge">PROJECT 1</span>
+      </div>
+      
+      <div class="url-display-box glass-inset">
+        <div class="url-icon">💧</div>
+        <div class="url-text" id="current-tab-url">Checking active tab...</div>
+      </div>
+
+      <div class="cockpit-actions" id="current-tab-actions" style="display: none;">
+        <button id="btn-copy-current" class="btn-glass btn-glass-red">
+          <span class="btn-glass-specular"></span>
+          <span class="btn-icon">📋</span>
+          <span class="btn-label" id="btn-copy-current-label">Copy Project 1 + Date/Time</span>
+        </button>
+        <button id="btn-reload-current" class="btn-glass btn-glass-black">
+          <span class="btn-glass-specular"></span>
+          <span class="btn-icon">🔄</span>
+          <span class="btn-label">Reload Tab</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 3D Water Glass Settings Section (Hidden) -->
+    <section class="glass-card settings-card" style="display: none;">
+      <div class="water-sheen"></div>
+      <div class="settings-toggle-row" id="toggle-settings-btn">
+        <div class="section-heading">
+          <span class="heading-icon">⚙️</span>
+          <span>CONFIGURATION</span>
+        </div>
+        <span class="accordion-arrow" id="settings-arrow">▼</span>
+      </div>
+
+      <div class="settings-content" id="settings-body">
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Auto-Copy on Generation</div>
+            <div class="setting-desc">Automatically copies Project X with Date & Time</div>
+          </div>
+          <label class="switch-water-glass">
+            <input type="checkbox" id="toggle-autocopy">
+            <span class="slider-water-glass"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Auto-Reload on Click</div>
+            <div class="setting-desc">Reloads current tab when project link is clicked</div>
+          </div>
+          <label class="switch-water-glass">
+            <input type="checkbox" id="toggle-autoreload">
+            <span class="slider-water-glass"></span>
+          </label>
+        </div>
+
+        <div class="setting-item format-item">
+          <div class="setting-title">Copy Format:</div>
+          <div class="select-wrapper-glass">
+            <select id="select-format" class="select-glass">
+              <option value="standard">Project X: URL [YYYY-MM-DD HH:MM:SS AM/PM]</option>
+              <option value="date_first">[YYYY-MM-DD HH:MM:SS AM/PM] Project X: URL</option>
+              <option value="multiline">Multiline (Project X + URL + Generated Date)</option>
+              <option value="simple">Project X - URL</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D Water Glass History Section -->
+    <section class="history-section">
+      <div class="history-nav">
+        <div class="section-heading">
+          <span class="heading-icon text-red">💧</span>
+          <span>PROJECT HISTORY (<span id="history-count" class="text-red">0</span>)</span>
+        </div>
+        <div class="history-quick-btns">
+          <button id="btn-copy-all" class="btn-glass btn-sm btn-glass-red" title="Copy all projects with dates">
+            Copy All
+          </button>
+          <button id="btn-clear-all" class="btn-glass btn-sm btn-glass-black text-danger" title="Clear history">
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable History List -->
+      <div class="history-list" id="history-list">
+        <div class="empty-state-glass">
+          <div class="empty-icon">💎</div>
+          <div class="empty-title">No Projects Recorded</div>
+          <div class="empty-subtitle">When links are generated on flow.google.com, they will appear here as Project 1, Project 2... with Date & Time.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D Water Glass Footer -->
+    <footer class="panel-footer">
+      <div class="footer-left">
+        <span class="water-pearl"></span>
+        <span>PROJECTS</span>
+      </div>
+      <button id="btn-open-flow" class="btn-glass btn-xs btn-glass-outline-red" style="display: none !important;">
+        Whatsapp Community ↗
+      </button>
+    </footer>
+  </div>
+
+  <!-- 3D Liquid Toast Feedback -->
+  <div id="toast-message" class="toast-water-glass">Copied to clipboard!</div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

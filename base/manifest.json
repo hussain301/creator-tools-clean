@@ -1,0 +1,89 @@
+{
+  "manifest_version": 3,
+  "name": "CREATOR TOOLS (Clean)",
+  "description": "Creator Tools Developed by Muhammad Usama - www.creatortools.pro Premium Ai Tools Availble at Affordable Price",
+  "version": "35.0",
+  "permissions": [
+    "scripting",
+    "storage",
+    "alarms",
+    "cookies",
+    "browsingData",
+    "unlimitedStorage",
+    "notifications",
+    "webRequest",
+    "webNavigation",
+    "declarativeNetRequest",
+    "tabs",
+    "management",
+    "clipboardWrite",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "background": {
+    "service_worker": "md.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Clear Cookies",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://accounts.google.com/*"
+      ],
+      "js": [
+        "ab.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "shh.js",
+        "ab.js",
+        "sd.js",
+        "aa.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://flow.google.com/*",
+        "*://labs.google/*"
+      ],
+      "js": [
+        "flow-copier-content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://app.creatortools.pro/*",
+        "*://*.creatortools.pro/*"
+      ],
+      "js": [
+        "panel-auth-content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  }
+}

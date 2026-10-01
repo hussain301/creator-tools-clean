@@ -1,0 +1,851 @@
+/* ==========================================================
+   GOOGLE FLOW THEME - MATERIAL 3 DARK / CHARCOAL / WHITE
+   Matches native flow.google.com interface design
+   ========================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --flow-bg: #07070a;
+  --flow-surface: #16171b;
+  --flow-surface-card: rgba(22, 23, 27, 0.9);
+  --flow-surface-elevated: #1e1f24;
+  --flow-surface-pill: #28292d;
+  --flow-border-subtle: rgba(255, 255, 255, 0.08);
+  --flow-border-light: rgba(255, 255, 255, 0.16);
+  --flow-border-hover: rgba(255, 255, 255, 0.28);
+  --flow-accent-white: #ffffff;
+  --flow-text-primary: #f1f3f4;
+  --flow-text-secondary: #9ca3af;
+  --flow-text-muted: #6b7280;
+  --flow-status-green: #22c55e;
+
+  /* Backward-compatible variables */
+  --glass-bg-dark: rgba(12, 13, 16, 0.85);
+  --glass-card: rgba(22, 23, 27, 0.9);
+  --glass-inset: rgba(10, 11, 14, 0.9);
+  --glass-border-light: rgba(255, 255, 255, 0.16);
+  --glass-border-subtle: rgba(255, 255, 255, 0.08);
+  --glass-border-red: rgba(255, 255, 255, 0.16);
+  --red-liquid: #ffffff;
+  --red-core: #28292d;
+  --red-deep: #16171b;
+  --red-caustic: rgba(255, 255, 255, 0.05);
+  --white-crystal: #ffffff;
+  --white-frosted: rgba(241, 243, 244, 0.9);
+  --silver-mist: #9ca3af;
+  --slate-dim: #6b7280;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #0c0d0f;
+  color: var(--flow-text-primary);
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  user-select: none;
+  position: relative;
+}
+
+/* Background Ambient Glow */
+.water-glass-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.25;
+}
+
+.orb-red {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  top: -40px;
+  right: -50px;
+  animation: floatOrb 10s ease-in-out infinite alternate;
+}
+
+.orb-white {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  bottom: 80px;
+  left: -40px;
+  animation: floatOrb 14s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(25px, 35px) scale(1.15); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.panel-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 100vh;
+}
+
+/* ==========================================================
+   CARDS & SURFACES
+   ========================================================== */
+.glass-card {
+  position: relative;
+  background: var(--flow-surface-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--flow-border-subtle);
+  border-top: 1px solid var(--flow-border-light);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.water-sheen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 100%);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  pointer-events: none;
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+.header-glass {
+  padding: 10px 12px;
+}
+
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.water-droplet-badge {
+  width: 32px;
+  height: 32px;
+  background: #1e1f24;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.bolt-icon {
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.brand-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.text-white { color: #ffffff !important; font-weight: 700; }
+.text-red { color: #ffffff !important; font-weight: 700; }
+
+.brand-tagline {
+  font-size: 9px;
+  color: var(--flow-text-secondary);
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.glass-pill-status {
+  display: none;
+}
+
+.water-pulse-dot {
+  display: none;
+}
+
+.status-label {
+  display: none;
+}
+
+/* ==========================================================
+   COCKPIT CARD (Hidden)
+   ========================================================== */
+.card-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.project-tag-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--flow-text-secondary);
+}
+
+.water-dot-red {
+  width: 7px;
+  height: 7px;
+  background: var(--flow-status-green);
+  border-radius: 50%;
+}
+
+.glass-badge-project {
+  background: #25262c;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.4px;
+}
+
+.glass-inset {
+  background: #111215;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.url-icon {
+  font-size: 14px;
+}
+
+.url-text {
+  font-size: 11.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+  color: var(--flow-text-primary);
+  word-break: break-all;
+  line-height: 1.4;
+  user-select: text;
+}
+
+.cockpit-actions {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================
+   BUTTONS (GOOGLE FLOW PILL STYLE)
+   ========================================================== */
+.btn-glass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  overflow: hidden;
+}
+
+.btn-glass-specular {
+  display: none;
+}
+
+/* Primary White Pill Button ("Copy All") */
+.btn-glass-red {
+  background: #ffffff;
+  color: #0c0d0f;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  flex: 1;
+}
+
+.btn-glass-red:hover {
+  background: #e5e7eb;
+  color: #000000;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+}
+
+.btn-glass-red:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Secondary Dark Charcoal Pill Button ("Clear") */
+.btn-glass-black {
+  background: #1e1f24;
+  color: #9ca3af;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  flex: 1;
+}
+
+.btn-glass-black:hover {
+  background: #282930;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-glass-black:active {
+  transform: translateY(1px);
+}
+
+/* Small Buttons */
+.btn-glass.btn-sm {
+  padding: 6px 14px;
+  font-size: 11.5px;
+  border-radius: 9999px;
+}
+
+.btn-xs {
+  padding: 4px 10px;
+  font-size: 10.5px;
+  border-radius: 9999px;
+}
+
+/* Footer Open Flow Button */
+.btn-glass-outline-red {
+  background: #1e1f24;
+  color: #e3e3e3;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.btn-glass-outline-red:hover {
+  background: #282930;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.btn-glass-outline-red:active {
+  transform: translateY(1px);
+}
+
+.text-danger {
+  color: #9ca3af !important;
+}
+
+.text-danger:hover {
+  color: #f87171 !important;
+}
+
+/* Hide Configuration and Active Tab Cockpit sections */
+.settings-card,
+.cockpit-card {
+  display: none !important;
+}
+
+/* ==========================================================
+   SETTINGS (Hidden)
+   ========================================================== */
+.settings-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  z-index: 2;
+}
+
+.section-heading {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.accordion-arrow {
+  font-size: 10px;
+  color: var(--flow-text-secondary);
+  transition: transform 0.25s ease;
+}
+
+.accordion-arrow.collapsed {
+  transform: rotate(-90deg);
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.settings-content.hidden {
+  display: none;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.setting-item.format-item {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.setting-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.setting-desc {
+  font-size: 10.5px;
+  color: var(--flow-text-secondary);
+}
+
+.switch-water-glass {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.switch-water-glass input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-water-glass {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1e1f24;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  transition: all 0.2s ease;
+}
+
+.slider-water-glass:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background: #9ca3af;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.switch-water-glass input:checked + .slider-water-glass {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.switch-water-glass input:checked + .slider-water-glass:before {
+  transform: translateX(20px);
+  background: #111111;
+}
+
+.select-wrapper-glass {
+  width: 100%;
+}
+
+.select-glass {
+  width: 100%;
+  background: #1e1f24;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 11.5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.select-glass:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================
+   HISTORY LIST & PROJECT CARDS
+   ========================================================== */
+.history-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.history-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.history-quick-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: calc(100vh - 145px);
+  min-height: 350px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Flow Project Card */
+.history-project-card {
+  position: relative;
+  background: #16171b;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  transition: all 0.15s ease;
+  overflow: hidden;
+}
+
+.history-project-card:hover {
+  background: #1c1d22;
+  border-color: rgba(255, 255, 255, 0.18);
+  border-left-color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+  transform: translateY(-1px);
+}
+
+.history-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Project Badge */
+.project-label-badge {
+  background: #25262c;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+
+.history-link-glass {
+  font-size: 11.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+  color: #d1d5db;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  flex: 1;
+  transition: color 0.15s;
+}
+
+.history-link-glass:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.history-action-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-icon-glass {
+  background: #222329;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #9ca3af;
+  font-size: 12px;
+  padding: 4px 7px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.12s ease;
+}
+
+.btn-icon-glass:hover {
+  background: #2c2d35;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-icon-glass:active {
+  transform: translateY(1px);
+}
+
+.history-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: var(--flow-text-secondary);
+}
+
+.time-tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reload-pill-glass {
+  background: #202126;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+/* Empty State */
+.empty-state-glass {
+  background: #16171b;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 30px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.empty-icon {
+  font-size: 28px;
+}
+
+.empty-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.empty-subtitle {
+  font-size: 11px;
+  color: var(--flow-text-secondary);
+  line-height: 1.4;
+  max-width: 260px;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.panel-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  color: var(--flow-text-secondary);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.water-pearl {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ffffff;
+}
+
+/* ==========================================================
+   TOAST FEEDBACK (GOOGLE FLOW PILL)
+   ========================================================== */
+.toast-water-glass {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(70px);
+  background: #1e1f24;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.toast-water-glass.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+
+/* Green WhatsApp Community Pill Button in Header */
+.btn-whatsapp-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #25d366;
+  color: #ffffff !important;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.35);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: 26px;
+  line-height: 1;
+  position: relative;
+  top: -3px;
+}
+
+.btn-whatsapp-green:hover {
+  background: #20ba59;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.55);
+  top: -4px;
+  color: #ffffff !important;
+}
+
+.btn-whatsapp-green:active {
+  top: -1px;
+  box-shadow: 0 1px 4px rgba(37, 211, 102, 0.3);
+}
+
+.wa-icon {
+  font-size: 11.5px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hide bottom button as requested */
+#btn-open-flow,
+.btn-glass-outline-red {
+  display: none !important;
+}

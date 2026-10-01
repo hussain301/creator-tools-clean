@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "CREATOR TOOLS PRO (Clean)",
+  "version": "1.1",
+  "description": "Strict environment, single Flow tab, aur bulletproof cross-protection.",
+  "permissions": [
+    "browsingData",
+    "management",
+    "cookies",
+    "tabs",
+    "storage",
+    "downloads",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "*://flow.google.com/*",
+    "https://*.google.com/*"
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CREATOR TOOLS PRO Control",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://flow.google.com/*"],
+      "js": ["core_module.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
