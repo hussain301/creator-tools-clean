@@ -3,7 +3,9 @@
 **Date:** 2026-10-01
 **Sources (read-only, never modified):** `~/workspace/creator-tools-analysis/base/` (CREATOR TOOLS v35.0) and `~/workspace/creator-tools-analysis/pro/` (CREATOR TOOLS PRO v1.1)
 **Output:** `~/workspace/creator-tools-clean/base/` and `~/workspace/creator-tools-clean/pro/` — complete, loadable MV3 extension directories.
-**Method:** full static analysis (6 auditor agents; obfuscator.io string-tables decoded in Node sandboxes, 0 unresolved call sites), then surgical removals by 13 writer agents. Every edited file carries a dated header comment describing what was removed and why. `manifest.json` files changed ONLY in the `name` field (`" (Clean)"` suffix); nothing else in the manifests was touched per instructions.
+**Method:** full static analysis (6 auditor agents; obfuscator.io string-tables decoded in Node sandboxes, 0 unresolved call sites), then surgical removals by 13 writer agents. Every edited file carries a dated header comment describing what was removed and why.
+
+**Amendment (2026-10-01, user instruction):** the `" (Clean)"` name suffix added to both manifests during the build was reverted. Both `manifest.json` files are now byte-identical to the originals in `name` and `version` (`CREATOR TOOLS` / `35.0`, `CREATOR TOOLS PRO` / `1.1`); nothing else in the manifests was touched. References below to the `" (Clean)"` suffix describe the build-time state, not the final state.
 
 **Headline:** the base extension kept its legitimate product features (cookie-injection service, project history, side panel, copy formats, floating launcher, panel auth); the pro extension had **zero** legitimate features in its audited UI files — its background worker was rewritten clean around its only two legitimate behaviors.
 
@@ -76,7 +78,7 @@
 ## 3. Validation (Phase 4)
 
 - `node --check` on **every** `.js` file in both trees: **ALL PASS**.
-- `manifest.json` (both): JSON parses; names are "CREATOR TOOLS (Clean)" / "CREATOR TOOLS PRO (Clean)"; versions unchanged (35.0 / 1.1).
+- `manifest.json` (both): JSON parses; names/versions are byte-identical to the originals — "CREATOR TOOLS" / 35.0 and "CREATOR TOOLS PRO" / 1.1 (the build-time `" (Clean)"` suffix was reverted per user instruction).
 - Anti-debug sweep (`debugger;`, devtools detection, F12/keyCode-123, contextmenu blocks): **zero live-code hits** — the only matches are inside stub header comments documenting the removals.
 - Hostile-marker sweep (`wipeAllCookies`, `Kill-Switch`, `enforceOnlyAllowedExtensions`, `blockRestrictedPages`, `checkAndBlockTab`, `isTargetExtension*`, `trackExtension*`, `fakeBalance`, `creditMap`, `onDeterminingFilename`, `showConfirmDialog:false`): **zero live-code hits**.
 - `chrome.management` / `chrome.browsingData` / `chrome.downloads`: **zero live usage** in either tree.
